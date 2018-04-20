@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import Profile from "./Profile.js";
+import styled from "styled-components";
+
+const Wrapper = styled.div`display: flex;`;
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      members: null
+      members: null,
     };
   }
   componentWillMount = () => {
@@ -13,7 +16,7 @@ class App extends Component {
       .then(response => response.json())
       .then(data => {
         // const member_names = data.map(userObject => userObject.login);
-        this.setState({ members: data});
+        this.setState({ members: data });
       })
       .catch(e => console.log(e));
   };
@@ -22,19 +25,21 @@ class App extends Component {
     const { members } = this.state;
     return (
       <div>
-        {members ? (
-          members.map(member => {
-            return (
-                <Profile 
+        <Wrapper>
+          {members ? (
+            members.map(member => {
+              return (
+                <Profile
                   member={member.login}
                   avatar={member.avatar_url}
                   key={member.id}
                 />
-            );
-          })
-        ) : (
-          <div>data pending</div>
-        )}
+              );
+            })
+          ) : (
+            <div>data pending</div>
+          )}
+        </Wrapper>
       </div>
     );
   }
