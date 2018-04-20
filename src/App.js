@@ -12,8 +12,8 @@ class App extends Component {
     fetch("https:api.github.com/orgs/stuffcluster/public_members")
       .then(response => response.json())
       .then(data => {
-        const member_names = data.map(userObject => userObject.login);
-        this.setState({ members: member_names});
+        // const member_names = data.map(userObject => userObject.login);
+        this.setState({ members: data});
       })
       .catch(e => console.log(e));
   };
@@ -25,15 +25,11 @@ class App extends Component {
         {members ? (
           members.map(member => {
             return (
-              // <img
-              //   src={member.avatar_url}
-              //   key={member.id}
-              //   alt={member.login}
-              //   height="150"
-              // />
-              <div key={member}>
-                <Profile member = {member}/>
-              </div>
+                <Profile 
+                  member={member.login}
+                  avatar={member.avatar_url}
+                  key={member.id}
+                />
             );
           })
         ) : (
