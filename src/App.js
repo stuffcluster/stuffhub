@@ -12,13 +12,7 @@ class App extends Component {
     fetch("https:api.github.com/orgs/stuffcluster/public_members")
       .then(response => response.json())
       .then(data => {
-        // console.log(data);
-        // let member_names = data.map(name => {return data.login})
-        let member_names = [];
-        for (let i = 0; i < data.length; i++) {
-          // console.log(data[i].login);
-          member_names.push(data[i].login);
-        }
+        const member_names = data.map(userObject => userObject.login);
         this.setState({ members: member_names});
       })
       .catch(e => console.log(e));
