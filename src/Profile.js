@@ -23,7 +23,9 @@ const Image = styled.div`
   transition: all 0.5s ease;
   color: white;
   text-shadow: 0 0 25px black;
+  box-shadow: inherit;
   &:hover {
+    box-shadow: inherit;
     color: transparent;
     text-shadow: none;
     background-size: 400%;
@@ -48,6 +50,7 @@ const Name = styled.p`
 `;
 
 const Link = styled.a`
+  box-shadow: inset 20px black;
   margin: 4px;
   display: block;
   text-decoration: none;
